@@ -1,0 +1,684 @@
+<!DOCTYPE html>
+<html>
+    <head>
+       <title>ECOMMERCE WEBSITE</title>
+       <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        .navbar{
+            display: flex;
+            align-items: center;
+            padding: 20px;
+            height: 50px;
+            background-color: #fff;
+        }
+        .logo img {
+            width: 100px;
+        }
+        .items {
+            background-color: #161880;
+            padding: 20px 25px;
+        }
+        .items a {
+            color: white; 
+            font-size: 14px;
+        }
+        .items ul {
+            list-style-type: none;
+            text-align: center;
+        }
+        .items ul li {
+            display: inline-block;
+            margin-right: 20px;
+        }
+        nav{
+            flex: 1;
+            text-align: center;
+        }
+        nav ul{
+            display: inline-block;
+            list-style-type: none;
+        }
+        nav ul li{
+            display: inline-block;
+            margin-right: 20px;
+        }
+        nav ul li a {
+            text-decoration: none;
+            color: #262626;
+            margin-right: 7px;
+            font-size: 16px;
+        }
+        .container{
+            max-width: 1300px;
+            margin: auto;
+            padding-left: 25px;
+            padding-right: 25px;
+        }
+        .slider-container{
+            padding: 2rem;   
+        }
+        .slider-wrapper{
+            position: relative;
+            max-width: 1200px; /* Increased width for better visibility */
+            margin: 0 auto;
+        }
+        .slider{
+            display: flex;
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+            scroll-behavior: smooth;
+            box-shadow: 0 1.5rem 3rem -0.75rem hsla(0,0%,0%,0.25);
+            border-radius: 0.5rem;
+        }
+        .slider img{
+           flex: 0 0 100%;
+           scroll-snap-align: start;
+           object-fit: cover;
+           width: 100%;
+           height: 400px; /* Adjust height as needed */
+        }
+        .slider-nav{
+            display: flex;
+            column-gap: 1rem;
+            position: absolute;
+            bottom: 1.25rem;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 1;
+        }
+        .slider-nav a {
+            width: 0.75rem;
+            height: 0.75rem;
+            border-radius: 50%;
+            background-color: #fff;
+            opacity: 0.75;
+            transition: opacity ease 250ms;
+        }
+        .slider-nav a:hover {
+            opacity: 1;
+        }
+        body{
+            margin: 0;
+            padding-left: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+        }
+        .main-container{
+            height: auto;
+            width: 100%;
+            background-color:rgb(255, 255, 255);
+            padding: 40px 0;
+        }
+        .nav{
+            height: 80px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color:rgb(255, 255, 255);
+            margin:0px 50px;
+        }
+        .main-text{
+            margin:0;
+            font-size: 25px;
+            font-weight: bold;
+        }
+        .minor-text{
+            margin: 0;
+            font-size: 16px;
+            color: #555;
+        }
+        .button{
+            height: 35px;
+            width: 100px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 20px;
+        }
+        .button button{
+            height: 100%;
+            width: 100%;
+            border-radius: 200px;
+            background-color:transparent;
+            border: 2px solid blue;
+            color: rgb(0, 17, 255);
+            font-weight: 600;
+            font-size: 12px;
+            cursor: pointer;
+            transition: background-color 0.3s, color 0.3s;
+        }
+        .button button:hover{
+            background-color:blue;
+            border: 2px solid blue;
+            color: white;
+        }
+        .main-product{
+            width: 100%;
+            margin:20px 50px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        .product{
+            flex: 1 1 300px;
+            background-color: white;
+            border: 2px solid rgb(233, 233, 233);
+            border-radius: 5px;
+            padding: 20px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        .contents{
+            display: flex;
+            align-items: center;
+            justify-content: space-evenly;
+        }
+        .tag-con{
+            display: flex;
+            justify-content: flex-end;
+            padding: 20px;
+            padding-bottom: 10px;
+        }
+        .tag-text{
+            font-size: 12px;
+            color: white;
+        }
+        .tag{
+            height: 25px;
+            width: 80px;
+            background-color: orangered;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 3px;
+        }
+        .img{
+            height:400px;
+            width: 300px;
+            background-color: rgb(228, 228, 228);
+            margin:0px 20px;
+        }
+        .img-text{
+            font-size: 20px;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+        .content-box{
+            width: 100%;
+        }
+        .content-btn{
+            margin-top: 10px;
+            width: 65%;
+            height:40px;
+        }
+        .content-btn button{
+            background-color: blue;
+            color: rgb(244, 224, 224);
+            border: none;
+            font-size: 12px;
+            font-weight: 600;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%;
+            height: 100%;
+        }
+        .product-ads{
+            height: 500px;
+            width: 30%;
+            background-color: rgb(228, 228, 228);
+            margin-right: 50px;
+            border-radius: 5px;
+        }
+        .sub-product{
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+        }
+        .home-container {
+            display: grid;
+            grid-template-columns: 3fr 1fr;
+            gap: 20px;
+            padding: 20px;
+            margin-bottom: 100px;
+        }
+        .home-header {
+            grid-column: span 2;
+            margin-bottom: 20px;
+        }
+        .home-header h1 {
+            font-size: 24px;
+            color: #333;
+        }
+        .home-header p {
+            font-size: 14px;
+            color: #666;
+        }
+        .home-products {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+        .home-product {
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+        .home-product img {
+            width: 100px;
+            height: auto;
+        }
+        .home-product h2 {
+            font-size: 16px;
+            color: #333;
+            margin: 10px 0;
+        }
+        .home-button {
+            background-color: #002f87;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-top: 10px;
+            font-size: 14px;
+            width: 100%;
+            box-sizing: border-box;
+            height: auto;
+        }
+        .home-button .home-price {
+            font-weight: bold;
+        }
+        .home-old-price {
+            font-size: 12px;
+            color: #999;
+            text-decoration: line-through;
+            margin-top: 5px;
+        }
+        .home-sidebar {
+            background-color: #e6f9ff;
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .home-sidebar h2 {
+            font-size: 18px;
+            color: #333;
+            margin-bottom: 10px;
+        }
+        .home-sidebar p {
+            font-size: 14px;
+            color: red;
+            font-weight: bold;
+        }
+        .home-sidebar img {
+            width: 100%;
+            height: auto;
+            margin-top: 10px;
+        }
+        /* Responsive Styles */
+        @media screen and (max-width: 768px) {
+            .home-container {
+                grid-template-columns: 1fr;
+            }
+            .home-products {
+                grid-template-columns: 1fr;
+            }
+            .home-sidebar {
+                margin-top: 20px;
+            }
+        }
+        @media screen and (max-width: 480px) {
+            .home-header h1 {
+                font-size: 20px;
+            }
+            .home-header p {
+                font-size: 12px;
+            }
+            .home-product h2 {
+                font-size: 14px;
+            }
+            .home-button {
+                padding: 8px 16px;
+                font-size: 12px;
+            }
+            .home-sidebar h2 {
+                font-size: 16px;
+            }
+            .home-sidebar p {
+                font-size: 12px;
+            }
+        }
+        .card {
+            min-width: 250px;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            padding: 15px;
+            text-align: center;
+            background-color: white;
+            scroll-snap-align: start;
+        }
+        .card img {
+            width: 100px;
+            height: auto;
+            margin-bottom: 10px;
+        }
+        .card h3 {
+            font-size: 16px;
+            margin: 10px 0;
+            color: #333;
+        }
+        .card p {
+            margin: 10px 0;
+            font-size: 14px;
+            color: #555;
+        }
+        .card .old-price {
+            text-decoration: line-through;
+            color: #999;
+            margin-right: 5px;
+            font-size: 12px;
+        }
+        .card .price {
+            color: #e60000;
+            font-weight: bold;
+            font-size: 14px;
+        }
+        .btn {
+            background-color: #007bff;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: background-color 0.3s;
+        }
+        .btn:hover {
+            background-color: #0056b3;
+        }
+        .offer {
+            display: flex;
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+            gap: 20px;
+            padding: 20px;
+        }
+        .offer::-webkit-scrollbar {
+            display: none; /* Hide scrollbar for Chrome, Safari, and Opera */
+        }
+        .offer {
+            -ms-overflow-style: none;  /* IE and Edge */
+            scrollbar-width: none;  /* Firefox */
+        }
+        .offer-container {
+            padding: 40px 50px;
+            background-color: #fff;
+        }
+        h2 {
+            text-align: center;
+            margin: 20px 0;
+            font-size: 24px;
+            color: #333;
+        }
+
+        /*what we offer */
+      
+h1 {
+    font-size: 2.5em;
+    margin-bottom: 20px;
+    font-weight: bold;
+    color: #333;
+}
+
+.offerings {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.offer-item {
+    background-color: #fff;
+    border-radius: 15px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    width: 300px;
+    text-align: center;
+}
+
+.icon {
+    width: 100px;
+    height: auto;
+    margin-bottom: 15px;
+}
+
+h2 {
+    font-size: 1.8em;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+p {
+    font-size: 1em;
+    color: #777;
+}
+
+/* Specific background colors for each offer */
+.offer-item:nth-child(1) {
+    background-color: #f4f7ec;
+}
+
+.offer-item:nth-child(2) {
+    background-color: #fde4e4;
+}
+
+.offer-item:nth-child(3) {
+    background-color: #eaf4fd;
+}
+       </style>
+    </head>
+    <body>
+        <div class="container">
+            <div class="navbar"> 
+                <div class="logo">
+                    <img src="logo.png" alt="Logo">
+                </div> 
+                <nav>
+                    <ul>
+                        <li>
+                            <a href="">&#127968; Home</a>
+                            <a href="">&#128176; Deals</a>
+                            <a href="">&#128722; Shop</a>
+                            <a href="">&#127873; Today's Offer</a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+            <div class="items">
+                <nav>
+                    <ul>
+                        <li>
+                            <a href="">&#128241; Electronics</a>
+                            <a href="">&#128087; Fashion</a>
+                            <a href="">&#128722; Grocery</a>
+                            <a href="">&#128716; Home & Furniture</a>
+                            <a href="">&#127879; Toys & Kid Accessories</a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+
+        <section class="slider-container">
+            <div class="slider-wrapper">
+                <div class="slider">
+                    <img id="slide-1" src="image1.jpg" alt="Slide 1">
+                    <img id="slide-2" src="image2.jpg" alt="Slide 2">
+                    <img id="slide-3" src="image3.jpg" alt="Slide 3">
+                </div>
+                <div class="slider-nav">
+                    <a href="#slide-1"></a>
+                    <a href="#slide-2"></a>
+                    <a href="#slide-3"></a>
+                </div>
+            </div>
+        </section>
+
+        <div class="main-container">
+            <div class="nav">
+                <div class="nav-text-btn">
+                    <p class="main-text">Student Essentials</p>
+                    <p class="minor-text">School books, Craft Kits & More</p>
+                </div>
+                <div class="button">
+                    <button>See More</button>
+                </div>
+            </div>
+            <div class="main-product">
+                <div class="sub-product">
+                    <div class="product">
+                        <div class="tag-con">
+                            <div class="tag">
+                                <p class="tag-text">#1 Seller</p>
+                            </div>
+                        </div>
+                        <div class="contents">
+                            <div class="img"></div>
+                            <div class="content-box">
+                                <div class="img-text">
+                                    See it Bigger April 2024 - June 2025 Weekly Dated Planner (11" x 9.75")
+                                </div>
+                                <div class="content-btn">
+                                    <button>Add To Cart $251</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="product-ads"></div>
+                </div>
+            </div>
+        </div> 
+
+        <!-- Deal of the Day Section -->
+        <div class="offer-container">
+            <h2>Deal of the Day</h2>
+            <div class="offer">
+                <div class="card">
+                    <img src="poco-m6-pro.png" alt="Poco M6 Pro">
+                    <h3>Poco M6 Pro 5G (Power Black, 128 GB)</h3>
+                    <p><span class="old-price">₹16,999</span> <span class="price">₹12,999</span></p>
+                    <button class="btn">Add to Cart</button>
+                </div>
+
+                <div class="card">
+                    <img src="acer-swift.png" alt="Acer Swift Go">
+                    <h3>Acer Swift Go 14 EVO OLED Intel Core i5 13th Gen</h3>
+                    <p><span class="old-price">₹99,500</span> <span class="price">₹93,999</span></p>
+                    <button class="btn">Add to Cart</button>
+                </div>
+
+                <div class="card">
+                    <img src="poco-m6-pro.png" alt="Poco M6 Pro">
+                    <h3>Poco M6 Pro Qual (Power Black, 128 GB)</h3>
+                    <p><span class="old-price">₹15,999</span> <span class="price">₹11,999</span></p>
+                    <button class="btn">Add to Cart</button>
+                </div>
+
+                <!-- Added more cards -->
+                <div class="card">
+                    <img src="samsung-galaxy.png" alt="Samsung Galaxy M13">
+                    <h3>Samsung Galaxy M13 (Aqua Green, 128 GB)</h3>
+                    <p><span class="old-price">₹14,999</span> <span class="price">₹11,499</span></p>
+                    <button class="btn">Add to Cart</button>
+                </div>
+
+                <div class="card">
+                    <img src="hp-laptop.png" alt="HP Laptop">
+                    <h3>HP Pavilion Laptop 14-dv2078TU</h3>
+                    <p><span class="old-price">₹75,000</span> <span class="price">₹70,999</span></p>
+                    <button class="btn">Add to Cart</button>
+                </div>
+
+                <div class="card">
+                    <img src="iphone-13.png" alt="iPhone 13">
+                    <h3>iPhone 13 (Blue, 128 GB)</h3>
+                    <p><span class="old-price">₹79,900</span> <span class="price">₹72,999</span></p>
+                    <button class="btn">Add to Cart</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="home-container">
+            <div class="home-header">
+                <h1>Home Appliances</h1>
+                <p>Premium Best Selling</p>
+            </div>
+            
+            <div class="home-products">
+                <div class="home-product">
+                    <img src="domex.jpg" alt="Domex Disinfectant">
+                    <h2>Domex Disinfectant Regular Liquid Toilet Cleaner (1 L)</h2>
+                    <button class="home-button">Add To Cart <span class="home-price">₹251</span></button>
+                    <p class="home-old-price">₹359</p>
+                </div>
+                <div class="home-product">
+                    <img src="odonil.jpg" alt="Odonil Room Freshener">
+                    <h2>Odonil Room Freshening Lavender Mist Spray (220 ml)</h2>
+                    <button class="home-button">Add To Cart <span class="home-price">₹84</span></button>
+                    <p class="home-old-price">₹169</p>
+                </div>
+                <div class="home-product">
+                    <img src="mortein.jpg" alt="Mortein 2 in 1">
+                    <h2>Mortein 2 in 1 Mosquito & Cockroach Killer Spray (600 ml)</h2>
+                    <button class="home-button">Add To Cart <span class="home-price">₹214</span></button>
+                    <p class="home-old-price">₹349</p>
+                </div>
+                <div class="home-product">
+                    <img src="pears.jpg" alt="Pears Body Wash">
+                    <h2>Pears Body Wash Pure & Gentle With Mint Extract (500 ml)</h2>
+                    <button class="home-button">Add To Cart <span class="home-price">₹276</span></button>
+                    <p class="home-old-price">₹389</p>
+                </div>
+            </div>
+    
+            <div class="home-sidebar">
+                <h2>Cleaning Essentials</h2>
+                <p>20% OFF</p>
+                <img src="cleaning-products.jpg" alt="Cleaning Products">
+            </div>
+        </div>   
+        <div class="container">
+            <h1>What We Offer!</h1>
+            <div class="offerings">
+                <div class="offer-item">
+                    <img src="bargain-icon.png" alt="Bargain Connect Icon" class="icon">
+                    <h2>Bargain Connect</h2>
+                    <p>Bargain Connect directly engages a user with the retailers to bargain for the prices of products in real time.</p>
+                </div>
+                
+                <div class="offer-item">
+                    <img src="free-delivery-icon.png" alt="Free Delivery Icon" class="icon">
+                    <h2>Free Delivery</h2>
+                    <p>We offer customers free delivery on all purchases, making shopping more convenient and cost-effective.</p>
+                </div>
+                
+                <div class="offer-item">
+                    <img src="secure-payment-icon.png" alt="Secure Payments Icon" class="icon">
+                    <h2>Secure Payments</h2>
+                    <p>We ensure that all transactions are protected with advanced encryption and security protocols.</p>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
+
+
